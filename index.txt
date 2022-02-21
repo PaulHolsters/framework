@@ -1,0 +1,55 @@
+// administry framework functionality
+function model(){
+
+}
+
+function action(){
+
+}
+
+function constraints(){
+
+}
+
+// application made with administry
+model
+    `
+        artikel with props
+            artikelnaam: Name as identifier
+            keuringstermijn: Period in years gt 0 with default 1
+            locatie: Status with values magazijn, leverancier and default magazijn
+            gekeurd: Status with values ok, nok and default ok
+            laatste gekeurd door: Leverancier.leverancier || nog nooit gekeurd
+            datum laatste keuring: Date with format dd/mm/yyyy || n.v.t.
+    `
+model
+    `
+        leverancier with props
+            leverancier: Name as identifier
+    `
+action
+    `
+        keuring with props
+            artikel: 
+                Artikel.artikelnaam with default --selecteer een artikel--
+            resultaat with default --selecteer een resultaat--
+                alters Artikel: 
+                    gekeurd, 
+                    datum laatste keuring equals Date.today when resultaat set to ok
+            locatie: 
+                Status with values naar magazijn, naar leverancier 
+                alters Artikel: 
+                    locatie with mapping naar magazijn -> magazijn, naar leverancier -> leverancier
+            leverancier 
+                alters Artikel: 
+                    laatst gekeurd door
+    `
+constraints
+    `
+        forbid setting Keuring.resultaat to ok 
+        when Keuring.locatie not equals naar magazijn
+        or Keuring.leverancier equals nog nooit gekeurd
+        or Keuring.artikel not equals Artikel.artikelnaam
+        
+        
+    `

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="general/general.js" type="module"></script>
+    <script src="core/engine.js" type="module"></script>
+    <script src="core/engine-helpers.js" type="module"></script>
+    <script src="core-elements/q-data.js" type="module"></script>
+    <script src="core-elements/q-background.js" type="module"></script>
+    <script src="core-elements/q-border.js" type="module"></script>
+    <script src="core-elements/q-wrapper.js" type="module"></script>
+    <script src="core-components/q-button.js" type="module"></script>
+    <script src="core-components/q-input.js" type="module"></script>
+</head>
+
+<body>
+<!-- todo: q-onset -->
+<q-button hover="pointer" q-onclick="#input1=>get:value" q-onresponse="#input2=>set:value">Push it!</q-button>
+<q-input step="0.001" type="checkbox" required id="input1" pattern="[A-Za-z]{3}" ></q-input>
+<q-input step="0.001" title="something in the way" q-oninput="alert:hi" type="number" id="input2" ></q-input>
+<q-data id="d2">Somethings gotta give</q-data>
+</body>
+</html>
+
+
+
+
